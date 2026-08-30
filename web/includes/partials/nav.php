@@ -3,6 +3,7 @@
     <div class="nav-links">
         <a href="dashboard.php">Dashboard</a>
         <a href="rules.php">Rules</a>
+        <a href="announce.php">Announce</a>
         <a href="broadcast.php">Broadcast</a>
         <a href="settings.php">Settings</a>
         <a href="logs.php">Logs</a>

@@ -14,6 +14,7 @@ INITIAL_COGS = (
     "cogs.welcome",
     "cogs.rules",
     "cogs.broadcast",
+    "cogs.announcements",
     "cogs.logging_cog",
 )
 
@@ -30,12 +31,22 @@ class GaBot(commands.Bot):
         for cog in INITIAL_COGS:
             await self.load_extension(cog)
 
-        if config.DISCORD_GUILD_ID:
-            guild = discord.Object(id=int(config.DISCORD_GUILD_ID))
-            self.tree.copy_global_to(guild=guild)
-            await self.tree.sync(guild=guild)
-        else:
-            await self.tree.sync()
+        try:
+            if config.DISCORD_GUILD_ID:
+                guild = discord.Object(id=int(config.DISCORD_GUILD_ID))
+                self.tree.copy_global_to(guild=guild)
+                await self.tree.sync(guild=guild)
+            else:
+                await self.tree.sync()
+        except discord.Forbidden:
+            log.error(
+                "Slash command sync failed with 'Missing Access'. The bot was likely "
+                "invited without the 'applications.commands' OAuth2 scope, or "
+                "DISCORD_GUILD_ID doesn't match a server the bot is in. Re-invite the "
+                "bot with both 'bot' and 'applications.commands' scopes checked in the "
+                "Discord Developer Portal's OAuth2 URL Generator. Continuing startup "
+                "without slash commands."
+            )
 
     async def on_ready(self) -> None:
         log.info("Logged in as %s (id=%s)", self.user, self.user.id)

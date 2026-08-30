@@ -44,6 +44,19 @@ CREATE TABLE IF NOT EXISTS broadcast_jobs (
     INDEX idx_status (status)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- One-off admin-authored messages posted to the configured welcome channel
+-- (distinct from broadcast_jobs, which DMs every member).
+CREATE TABLE IF NOT EXISTS channel_messages (
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    message     TEXT NOT NULL,
+    status      ENUM('pending','sent','failed') NOT NULL DEFAULT 'pending',
+    error       VARCHAR(255) NULL,
+    created_by  VARCHAR(32) NOT NULL,
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sent_at     TIMESTAMP NULL,
+    INDEX idx_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE IF NOT EXISTS logs (
     id               BIGINT AUTO_INCREMENT PRIMARY KEY,
     level            ENUM('info','warning','error') NOT NULL DEFAULT 'info',
