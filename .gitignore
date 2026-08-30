@@ -1,0 +1,6 @@
+bot/.env
+bot/venv/
+bot/__pycache__/
+bot/**/__pycache__/
+web/includes/config.php
+*.log

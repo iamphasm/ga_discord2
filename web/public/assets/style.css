@@ -1,0 +1,89 @@
+:root {
+    color-scheme: light dark;
+    --bg: #f5f6fa;
+    --fg: #1c1e21;
+    --card: #ffffff;
+    --border: #d9dce1;
+    --accent: #5865f2;
+    --danger: #d0342c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-brand { font-weight: 700; }
+.nav-links { display: flex; gap: 1rem; flex: 1; }
+.nav-links a, .nav-user a { color: var(--accent); text-decoration: none; }
+.nav-links a:hover, .nav-user a:hover { text-decoration: underline; }
+.nav-user { display: flex; gap: 1rem; align-items: center; }
+
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); }
+
+label { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+input, textarea, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+button.danger { background: var(--danger); }
+
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: var(--border);
+}
+.badge.error { background: #fdecea; color: var(--danger); }
+.badge.warning { background: #fff4e5; color: #8a5a00; }
+.badge.info { background: #e8f0fe; color: #1a4fb4; }
+
+.login-box {
+    max-width: 360px;
+    margin: 4rem auto;
+    text-align: center;
+}

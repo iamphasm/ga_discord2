@@ -1,0 +1,6 @@
+Options -Indexes
+DirectoryIndex index.php
+
+<FilesMatch "\.(env|sql|md|log)$">
+    Require all denied
+</FilesMatch>
